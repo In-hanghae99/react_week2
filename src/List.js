@@ -80,7 +80,7 @@ const Title = styled.div`
 const Wrap = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
 `;
 const Card = styled.div`
   min-width: 26vw;

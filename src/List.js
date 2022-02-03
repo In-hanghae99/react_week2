@@ -6,6 +6,8 @@ import {
   loadDictionaryFB,
   deleteDictionaryFB,
 } from "./redux/modules/dictionary";
+import styled from "styled-components";
+
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
@@ -28,31 +30,11 @@ const List = (props) => {
   //화면 출력
   return (
     <div>
-      <div style={{ textAlign: "center", fontSize: "50px" }}>My Dictionary</div>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
-        }}
-      >
+      <Title>My Dictionary</Title>
+      <Wrap>
         {my_lists.map((list, index) => {
           return (
-            <div
-              key={index}
-              style={{
-                minWidth: "26vw",
-                maxWidth: "26vw",
-                minHeight: "30vh",
-                maxHeight: "30vh",
-                padding: "30px",
-                margin: "20px",
-                border: "1px solid #ddd",
-                backgroundColor: "aliceblue",
-                wordBreak: "break-all",
-                overflow: "auto",
-              }}
-            >
+            <Card key={index}>
               <div style={{ display: "flex", justifyContent: "right" }}>
                 <DeleteForeverIcon
                   onClick={() => {
@@ -65,22 +47,16 @@ const List = (props) => {
                   }}
                 ></InfoIcon>
               </div>
-              <p style={{ fontSize: "3px", textDecoration: "underline" }}>
-                단어
-              </p>
+              <Name>단어</Name>
               <div>{list.word}</div>
-              <p style={{ fontSize: "3px", textDecoration: "underline" }}>
-                설명
-              </p>
+              <Name>설명</Name>
               <div>{list.explanation}</div>
-              <p style={{ fontSize: "3px", textDecoration: "underline" }}>
-                예시
-              </p>
+              <Name>예시</Name>
               <div style={{ color: "blue" }}>{list.example}</div>
-            </div>
+            </Card>
           );
         })}
-      </div>
+      </Wrap>
       <Fab
         aria-label="add"
         style={{
@@ -97,5 +73,29 @@ const List = (props) => {
     </div>
   );
 };
-
+const Title = styled.div`
+  text-align: center;
+  font-size: 50px;
+`;
+const Wrap = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;
+const Card = styled.div`
+  min-width: 26vw;
+  max-width: 26vw;
+  min-height: 30vh;
+  max-height: 30vh;
+  padding: 30px;
+  margin: 20px;
+  border: 1px solid #ddd;
+  background-color: aliceblue;
+  word-break: break-all;
+  overflow: auto;
+`;
+const Name = styled.p`
+  font-size: 3px;
+  text-decoration: underline;
+`;
 export default List;
